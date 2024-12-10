@@ -29,4 +29,24 @@ public class Cuenta {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void debit(BigDecimal monto){
+        this.saldo = this.getSaldo().subtract(monto);
+    }
+
+    public void credit(BigDecimal monto){
+        this.saldo = this.saldo.add(monto);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Cuenta)){
+            return false;
+        }
+        Cuenta c = (Cuenta) obj;
+        if(this.name == null  || this.saldo == null){
+            return false;
+        }
+        return this.name.equals(c.getName()) && this.saldo.equals(c.getSaldo());
+    }
 }
