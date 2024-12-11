@@ -31,7 +31,11 @@ public class Cuenta {
     }
 
     public void debit(BigDecimal monto){
-        this.saldo = this.getSaldo().subtract(monto);
+        BigDecimal Nuevo = this.getSaldo().subtract(monto);
+        if (Nuevo.compareTo(BigDecimal.ZERO) < 0){
+            throw  new DineroInsificienteException("Dinero insificiente");
+        }
+        this.saldo = Nuevo;
     }
 
     public void credit(BigDecimal monto){

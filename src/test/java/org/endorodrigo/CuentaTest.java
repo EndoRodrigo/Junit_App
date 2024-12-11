@@ -50,4 +50,17 @@ class CuentaTest {
         assertEquals(20250.23,cuenta.getSaldo().doubleValue());
         assertEquals("20250.23", cuenta.getSaldo().toPlainString());
     }
+
+    @Test
+    void testDineroInsuficienteException() {
+        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
+        Exception exp = assertThrows(
+                DineroInsificienteException.class, () ->{
+                    cuenta.debit(new BigDecimal("300000.00"));
+                }
+        );
+        String actual = exp.getMessage();
+        String esperado = "Dinero insificiente";
+        assertEquals(esperado, actual);
+    }
 }
