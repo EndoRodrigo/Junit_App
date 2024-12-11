@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class Cuenta {
     private String name;
     private BigDecimal saldo;
+    private Banco banco;
 
     public Cuenta() {
     }
@@ -28,6 +29,14 @@ public class Cuenta {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Banco getBanco() {
+        return banco;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
     }
 
     public void debit(BigDecimal monto){
