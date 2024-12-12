@@ -1,6 +1,7 @@
 package org.endorodrigo;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CuentaTest {
 
     @Test
+    @DisplayName("Probando la clase cuenta corriente!")
     void testNombreCuenta(){
         Cuenta cuenta = new Cuenta("Endo", new BigDecimal("1000.00"));
         assertEquals("Endo",cuenta.getName());
@@ -18,6 +20,7 @@ class CuentaTest {
     }
 
     @Test
+    @DisplayName("Probando el saldo de cuenta corriente")
     void testSaldoCuenta(){
         Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         assertEquals(20000.00, cuenta.getSaldo().doubleValue());

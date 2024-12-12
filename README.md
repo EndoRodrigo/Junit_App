@@ -1,5 +1,5 @@
 # Glosario de conceptos técnicos en JUnit 5:
-###JUnit 5: Es una plataforma de pruebas para Java, que consta de tres subproyectos principales: JUnit Jupiter, JUnit Vintage y JUnit Platform. JUnit 5 permite escribir y ejecutar pruebas unitarias de manera más flexible y moderna que las versiones anteriores de JUnit.
+### JUnit 5: Es una plataforma de pruebas para Java, que consta de tres subproyectos principales: JUnit Jupiter, JUnit Vintage y JUnit Platform. JUnit 5 permite escribir y ejecutar pruebas unitarias de manera más flexible y moderna que las versiones anteriores de JUnit.
 
 ### JUnit Jupiter: Es el nuevo motor de pruebas que proporciona una API más rica para escribir pruebas y realizar aserciones en JUnit 5. Incluye anotaciones y mecanismos para ejecutar pruebas.
 
