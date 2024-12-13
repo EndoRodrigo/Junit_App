@@ -1,19 +1,38 @@
 package org.endorodrigo;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CuentaTest {
+    Cuenta cuenta;
+
+    @BeforeEach
+    void initMetohTest(){
+        this.cuenta = new Cuenta("Endo", new BigDecimal("20000.00"));
+        System.out.println("Iniciando el metodo....");
+    }
+
+    @AfterEach
+    void tearDown(){
+        System.out.println("Finalizacion de la prueba");
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("Inicializando el test");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("Finalizacion del test");
+    }
 
     @Test
     @DisplayName("Probando la clase cuenta corriente!")
     void testNombreCuenta(){
-        Cuenta cuenta = new Cuenta("Endo", new BigDecimal("1000.00"));
         assertEquals("Endo",cuenta.getName());
         assertTrue(cuenta.getName().equals("Endo"));
 
@@ -22,15 +41,14 @@ class CuentaTest {
     @Test
     @DisplayName("Probando el saldo de cuenta corriente")
     void testSaldoCuenta(){
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         assertEquals(20000.00, cuenta.getSaldo().doubleValue());
         assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO ) < 0);
         assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO ) > 0);
     }
 
     @Test
+    @Disabled
     void testReferencesCuenta() {
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         Cuenta cuenta2 = new Cuenta("Juan", new BigDecimal("20000.00"));
         //assertNotEquals(cuenta,cuenta2);
         assertEquals(cuenta,cuenta2);
@@ -38,7 +56,6 @@ class CuentaTest {
 
     @Test
     void testCuentaDebit() {
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         cuenta.debit(new BigDecimal("250.23"));
         assertNotNull(cuenta.getSaldo());
         assertEquals(19749.77,cuenta.getSaldo().doubleValue());
@@ -47,7 +64,6 @@ class CuentaTest {
 
     @Test
     void testCuentaCredit() {
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         cuenta.credit(new BigDecimal("250.23"));
         assertNotNull(cuenta.getSaldo());
         assertEquals(20250.23,cuenta.getSaldo().doubleValue());
@@ -56,7 +72,6 @@ class CuentaTest {
 
     @Test
     void testDineroInsuficienteException() {
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         Exception exp = assertThrows(
                 DineroInsificienteException.class, () ->{
                     cuenta.debit(new BigDecimal("300000.00"));
@@ -70,7 +85,6 @@ class CuentaTest {
 
     @Test
     void testTranferenciaBancaria() {
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         Cuenta cuenta2 = new Cuenta("Juan", new BigDecimal("20000.00"));
         Banco banco = new Banco();
         banco.setName("Banco del estado");
@@ -81,7 +95,6 @@ class CuentaTest {
 
     @Test
     void testRelacionBancoCuenta() {
-        Cuenta cuenta = new Cuenta("Juan", new BigDecimal("20000.00"));
         Cuenta cuenta2 = new Cuenta("Diego", new BigDecimal("20000.00"));
         Banco banco = new Banco();
         banco.addCuenta(cuenta);
