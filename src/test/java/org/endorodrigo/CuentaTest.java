@@ -1,6 +1,11 @@
 package org.endorodrigo;
 
+import jdk.jfr.Enabled;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.JRE;
+import org.junit.jupiter.api.condition.OS;
 
 import java.math.BigDecimal;
 
@@ -108,5 +113,23 @@ class CuentaTest {
         assertEquals("Banco del estado", cuenta.getBanco().getName());
         assertEquals("Juan", banco.getListaCuenta().stream()
                 .filter(c -> c.getName().equals("Juan")).findFirst().get().getName());
+    }
+
+    @Test
+    @EnabledOnOs(OS.WINDOWS)
+    void testSoloWindwos() {
+        System.out.println("Ejecutado el windows");
+    }
+
+    @Test
+    @EnabledOnOs({OS.LINUX, OS.MAC})
+    void testSoloLinuxMac() {
+        System.out.println("Ejecutado el bash");
+    }
+
+    @Test
+    @EnabledOnJre(JRE.JAVA_23)
+    void testSoloJava23() {
+        System.out.println("Verificando la version de java");
     }
 }
