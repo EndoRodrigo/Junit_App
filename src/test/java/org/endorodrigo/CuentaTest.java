@@ -2,12 +2,10 @@ package org.endorodrigo;
 
 import jdk.jfr.Enabled;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.EnabledOnJre;
-import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.JRE;
-import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.api.condition.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -131,5 +129,16 @@ class CuentaTest {
     @EnabledOnJre(JRE.JAVA_23)
     void testSoloJava23() {
         System.out.println("Verificando la version de java");
+    }
+
+    @Test
+    void testImprimirVariablesAmbiente() {
+        Map<String,String> getEnv = System.getenv();
+        getEnv.forEach((k, v) -> System.out.println(k +" = "+ v));
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "NUMBER_OF_PROCESSORS", matches = "12")
+    void testProcesadores() {
     }
 }
